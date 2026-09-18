@@ -1,0 +1,2223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algebra • Solving Linear Equations: 18-Problem Mastery Suite</title>
+
+  <!-- MathJax Configuration & Loader -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <style>
+    :root {
+      --navy-dark: #0f172a;
+      --brand-blue: #2563eb;
+      --accent-cyan: #0284c7;
+      --bg-tint: #f8fafc;
+      --card-surf: #ffffff;
+      --border-accent: #93c5fd;
+      --border-soft: #cbd5e1;
+      --green-ok: #059669;
+      --green-surf: #d1fae5;
+      --red-fail: #dc2626;
+      --red-surf: #fee2e2;
+      --brand-gold: #f59e0b;
+      --gold-dark: #d97706;
+      --gold-surf: #fef3c7;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+
+      /* High-Contrast Clear Light Yellow Options Palette */
+      --opt-yellow-bg: #fefce8;
+      --opt-yellow-border: #fef08a;
+      --opt-yellow-hover: #fef9c3;
+      --opt-yellow-active: #fde047;
+      --opt-yellow-text: #713f12;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-tint);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--navy-dark);
+      color: #fff;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-badge {
+      width: 44px;
+      height: 44px;
+      background: #ffffff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    }
+
+    .brand-title h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-title p {
+      font-size: 0.78rem;
+      color: #38bdf8;
+      font-weight: 500;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .chip {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chip strong {
+      color: #ffffff;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-icon {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    nav {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-soft);
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 16px;
+      flex-wrap: wrap;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      outline: none;
+      padding: 10px 20px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    nav button.active {
+      background: #eff6ff;
+      color: var(--brand-blue);
+      border-bottom: 3px solid var(--brand-blue);
+    }
+
+    main {
+      flex: 1;
+      padding: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    #loginGateView {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-box {
+      background: #fff;
+      padding: 36px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 480px;
+      text-align: center;
+      box-shadow: 0 14px 35px rgba(0,0,0,0.3);
+    }
+
+    .login-box h2 {
+      font-size: 1.45rem;
+      color: var(--navy-dark);
+      margin-bottom: 6px;
+    }
+
+    .login-box p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .resume-alert {
+      display: none;
+      background: #eff6ff;
+      border: 1px solid var(--border-accent);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+      font-size: 0.86rem;
+      color: var(--navy-dark);
+      text-align: left;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border-soft);
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 16px;
+      outline: none;
+    }
+
+    .btn-primary {
+      background: var(--brand-blue);
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border-accent);
+      color: var(--navy-dark);
+      padding: 9px 18px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-tint);
+    }
+
+    .sheet-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+    }
+
+    @media (max-width: 990px) {
+      .sheet-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .topic-integrated-banner {
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      padding: 22px;
+      margin-bottom: 22px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+
+    .topic-integrated-banner h3 {
+      color: var(--navy-dark);
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .paul-notes-container {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin: 14px 0;
+    }
+
+    .paul-notes-container h4 {
+      color: #166534;
+      font-size: 0.98rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .paul-notes-body {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: #14532d;
+    }
+
+    .paul-notes-body ul {
+      margin-left: 20px;
+      margin-top: 6px;
+      margin-bottom: 6px;
+    }
+
+    .formula-box {
+      background: #f8fafc;
+      border-left: 4px solid var(--brand-blue);
+      border-radius: 0 6px 6px 0;
+      padding: 10px 14px;
+      margin: 12px 0;
+    }
+
+    .question-card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      padding: 26px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .concept-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 14px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #7dd3fc;
+    }
+
+    .hint-container {
+      margin: 14px 0;
+    }
+
+    .btn-hint-toggle {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      color: #b45309;
+      font-size: 0.86rem;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-hint-toggle:hover {
+      background: #fef3c7;
+      border-color: #f59e0b;
+    }
+
+    .hint-box {
+      display: none;
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: #92400e;
+      line-height: 1.6;
+    }
+
+    /* Step Box Structure - Sequential Strict Reveal */
+    .step-unit {
+      margin-top: 18px;
+      padding: 18px;
+      background: #f8fafc;
+      border: 1px solid var(--border-soft);
+      border-radius: 10px;
+      animation: fadeIn 0.3s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-unit.completed {
+      border-color: #86efac;
+      background: #f0fdf4;
+    }
+
+    .step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .step-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--navy-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: #e2e8f0;
+      color: #475569;
+    }
+
+    .step-badge.resolved {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .mcq-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    /* Light Yellow Options */
+    .mcq-option-btn {
+      background: var(--opt-yellow-bg);
+      border: 2px solid var(--opt-yellow-border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 0.95rem;
+      color: var(--opt-yellow-text);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 2px 4px rgba(254, 240, 138, 0.25);
+    }
+
+    .mcq-option-btn:hover:not(:disabled) {
+      background: var(--opt-yellow-hover);
+      border-color: var(--opt-yellow-active);
+      transform: translateY(-1px);
+    }
+
+    .mcq-option-btn.selected-correct {
+      background: var(--green-surf) !important;
+      border-color: var(--green-ok) !important;
+      color: var(--green-ok) !important;
+      font-weight: 700;
+      box-shadow: none;
+    }
+
+    .mcq-option-btn.selected-wrong {
+      background: var(--red-surf) !important;
+      border-color: var(--red-fail) !important;
+      color: var(--red-fail) !important;
+      box-shadow: none;
+    }
+
+    .opt-letter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 2px solid var(--opt-yellow-active);
+      font-weight: 800;
+      color: var(--opt-yellow-text);
+      flex-shrink: 0;
+    }
+
+    .attempts-badge {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 12px;
+      background: #f1f5f9;
+      color: #64748b;
+      margin-left: 6px;
+    }
+
+    .step-feedback-box {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      display: block;
+      animation: fadeIn 0.25s ease-in;
+    }
+
+    .step-feedback-box.correct {
+      background: #ecfdf5;
+      border-left: 4px solid var(--green-ok);
+      color: #065f46;
+    }
+
+    .step-feedback-box.incorrect {
+      background: #fef2f2;
+      border-left: 4px solid var(--red-fail);
+      color: #991b1b;
+    }
+
+    .btn-reveal-step {
+      background: var(--brand-gold);
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.82rem;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    .btn-reveal-step:hover {
+      background: var(--gold-dark);
+    }
+
+    .svg-container {
+      display: flex;
+      justify-content: center;
+      margin: 16px 0;
+      padding: 16px;
+      background: var(--bg-tint);
+      border-radius: 8px;
+      border: 1px solid var(--border-soft);
+      overflow-x: auto;
+    }
+
+    .nav-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .nav-btn-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-nav-action {
+      background: #f8fafc;
+      border: 1px solid var(--border-accent);
+      color: var(--navy-dark);
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+
+    .btn-nav-action:hover:not(:disabled) {
+      background: var(--bg-tint);
+      border-color: var(--brand-blue);
+    }
+
+    .btn-nav-action:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-skip {
+      border-color: var(--brand-gold);
+      color: var(--gold-dark);
+      background: var(--gold-surf);
+    }
+
+    .btn-skip:hover {
+      background: #fde68a;
+    }
+
+    .palette-box {
+      background: #fff;
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .palette-filters {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .btn-filter {
+      flex: 1;
+      padding: 6px 4px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border: 1px solid var(--border-soft);
+      background: #f8fafc;
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .btn-filter.active {
+      background: var(--brand-blue);
+      color: #fff;
+      border-color: var(--brand-blue);
+    }
+
+    .palette-legend {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      margin: 8px 0 12px 0;
+      padding: 6px 8px;
+      background: var(--bg-tint);
+      border-radius: 6px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 600;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 6px;
+      margin-bottom: 12px;
+      max-height: 380px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .palette-btn {
+      aspect-ratio: 1;
+      border: 1px solid var(--border-soft);
+      background: var(--bg-tint);
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      font-size: 0.82rem;
+      color: var(--navy-dark);
+    }
+
+    .palette-btn.active {
+      border: 2px solid var(--navy-dark) !important;
+      background: #bfdbfe;
+      color: #1e3a8a;
+    }
+
+    .palette-btn.completed {
+      background: var(--green-ok) !important;
+      color: #fff !important;
+      border-color: var(--green-ok) !important;
+    }
+
+    .palette-btn.partial {
+      background: var(--brand-gold) !important;
+      color: #fff !important;
+      border-color: var(--gold-dark) !important;
+    }
+
+    .theory-card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .theory-card h3 {
+      color: var(--navy-dark);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.25rem;
+    }
+
+    .compendium-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 16px 0;
+    }
+
+    .comp-card {
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
+      border-radius: 10px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+    }
+
+    .comp-card h4 {
+      color: var(--navy-dark);
+      border-bottom: 2px solid var(--border-soft);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .recap-body {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: var(--text-main);
+    }
+
+    .hero-score-card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      padding: 28px;
+      text-align: center;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+    }
+
+    .student-badge {
+      display: inline-block;
+      background: var(--bg-tint);
+      border: 1px solid var(--border-accent);
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 1rem;
+      margin-bottom: 14px;
+      color: var(--navy-dark);
+    }
+
+    .student-badge strong {
+      color: var(--brand-blue);
+    }
+
+    .score-badge {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--brand-blue);
+      margin: 8px 0;
+    }
+
+    .progress-bar-wrap {
+      width: 100%;
+      height: 12px;
+      background: #e2e8f0;
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 16px 0;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--green-ok);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--navy-dark);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 1000;
+    }
+
+    @media print {
+      header, nav, .palette-box, .btn-primary, #loginGateView, .nav-toolbar, .btn-hint-toggle {
+        display: none !important;
+      }
+      body { background: #fff; }
+      main { width: 100%; max-width: 100%; padding: 0; }
+      .sheet-grid { display: block; }
+      .view { display: block !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-wrap">
+      <div class="logo-badge">
+        <svg width="34" height="34" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="44" stroke="#2563eb" stroke-width="7"/>
+          <path d="M 28 50 L 72 50" stroke="#0284c7" stroke-width="7" stroke-linecap="round"/>
+          <path d="M 50 28 L 50 72" stroke="#f59e0b" stroke-width="7" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="brand-title">
+        <h1>Algebra • Solving Linear Equations Master Suite</h1>
+        <p>Complete 18-Problem Set (6 Practice + 12 Assignment) • Strict Step Gating &amp; Balanced Options</p>
+      </div>
+    </div>
+    <div class="header-controls">
+      <div class="chip" id="timerChip">⏱️ 00:00</div>
+      <div class="chip" id="userPill"><strong>Student: Guest</strong></div>
+      <button class="btn-icon" id="audioToggleBtn" title="Toggle Audio">🔊</button>
+    </div>
+  </header>
+
+  <nav>
+    <button class="tab-btn active" id="tabPracticeBtn" onclick="switchMainTab('practice')">
+      🎯 Interactive Practice Workstation (18 Problems)
+    </button>
+    <button class="tab-btn" id="tabTheoryBtn" onclick="switchMainTab('theory')">
+      📖 Solving Linear Equations Compendium
+    </button>
+    <button class="tab-btn" id="tabScorecardBtn" onclick="switchMainTab('scorecard')">
+      📊 Master Scorecard &amp; Solutions
+    </button>
+  </nav>
+
+  <!-- Login Modal with Session Persistence -->
+  <div id="loginGateView">
+    <div class="login-box">
+      <h2>Linear Equations Practice Portal</h2>
+      <p>Algebra • Distributive Property, Clearing Denominators, Identities &amp; Contradictions</p>
+      
+      <div id="resumeAlertBox" class="resume-alert">
+        <strong>Saved Session Found!</strong><br>
+        <span id="savedSessionDetails"></span>
+      </div>
+
+      <input type="text" id="studentNameInput" placeholder="Enter Student Name" />
+      <button class="btn-primary" id="startSessionBtn" onclick="initDirectLogin(false)">Start Learning Session</button>
+      <button class="btn-secondary" id="resumeSessionBtn" style="display:none;" onclick="initDirectLogin(true)">Resume Saved Session</button>
+    </div>
+  </div>
+
+  <main>
+    <!-- View 1: Unified Interactive Learning Stream -->
+    <div id="viewPractice" class="view active">
+      <div class="sheet-grid">
+        <div>
+          <!-- Unified Header Card: Synchronized Notes directly above active problem -->
+          <div class="topic-integrated-banner" id="topicBannerContainer"></div>
+
+          <!-- Question Workstation Card -->
+          <div class="question-card" id="activeQuestionCard"></div>
+        </div>
+
+        <aside>
+          <div class="palette-box">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <h4 id="paletteHeaderTitle">All 18 Problems</h4>
+              <span style="font-size:0.8rem; color:var(--text-muted);" id="paletteCount">0 / 18 Solved</span>
+            </div>
+
+            <div class="palette-filters">
+              <button class="btn-filter active" id="filterAllBtn" onclick="filterPalette('all')">All (18)</button>
+              <button class="btn-filter" id="filterP1Btn" onclick="filterPalette('p1')">Practice (6)</button>
+              <button class="btn-filter" id="filterP2Btn" onclick="filterPalette('p2')">Assignment (12)</button>
+            </div>
+
+            <div class="palette-legend">
+              <div class="legend-item"><span class="legend-dot" style="background:var(--green-ok);"></span> Completed</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#f59e0b;"></span> In Progress</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#bfdbfe;"></span> Active</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#f0f9ff; border:1px solid #bae6fd;"></span> Unseen</div>
+            </div>
+            
+            <div class="palette-grid" id="paletteGrid"></div>
+            
+            <button class="btn-primary" style="margin-top: 10px; background: var(--navy-dark);" onclick="switchMainTab('scorecard')">
+              📊 View Evaluation Scorecard
+            </button>
+            <button class="btn-secondary" style="margin-top: 8px; border-color: #cbd5e1;" onclick="resetStudentProgress()">
+              🔄 Reset All Progress
+            </button>
+          </div>
+
+          <div class="palette-box" style="background: #f8fafc;">
+            <h4 style="font-size: 0.92rem; margin-bottom: 8px; color: var(--navy-dark);">Strict Step-Gating Rules</h4>
+            <p style="font-size: 0.82rem; line-height: 1.6; color: var(--text-muted);">
+              • <strong>Sequential Lock:</strong> Step 2 remains completely hidden until Step 1 is verified.<br/>
+              • <strong>Balanced Options:</strong> Correct answer positions are evenly distributed across (A), (B), (C), and (D).<br/>
+              • <strong>Embedded Paul's Notes:</strong> Complete reference notes update directly above each problem.<br/>
+              • Click <strong>💡 Need a Hint?</strong> to reveal tailored algebraic hints.<br/>
+              • You get <strong>2 attempts</strong> per step. If unresolved after 2 attempts, the <strong>Reveal Step Solution</strong> button unlocks.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- View 2: Compendium Guide -->
+    <div id="viewTheory" class="view">
+      <div class="theory-card">
+        <h3>📐 Paul's Online Notes: Solving Linear Equations Compendium</h3>
+        <p class="theory-intro-text">
+          A linear equation in one variable is an equation that can be written in the form \(ax + b = 0\) where \(a \ne 0\). The goal is to isolate the variable using reversible algebraic operations.
+        </p>
+
+        <div class="compendium-grid">
+          <div class="comp-card">
+            <h4>1. Standard Solution Procedure</h4>
+            <div class="recap-body">
+              <div class="formula-box">
+                <p>1. Clear fractions or decimals by multiplying every term by the LCD.</p>
+                <p>2. Clear all parentheses using the distributive law.</p>
+                <p>3. Combine like terms on each side independently.</p>
+                <p>4. Collect variable terms on one side and constant terms on the other.</p>
+                <p>5. Divide by the coefficient of the variable to isolate it.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="comp-card">
+            <h4>2. Clearing Denominators with LCD</h4>
+            <div class="recap-body">
+              <p>For equations containing fractions:</p>
+              <div class="formula-box">
+                \[\frac{x}{a} + \frac{y}{b} = c \implies \text{LCD}(a, b) \cdot \left(\frac{x}{a} + \frac{y}{b}\right) = \text{LCD}(a, b) \cdot c\]
+                <p>Eliminates all denominators in a single step, yielding integer coefficients.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="comp-card">
+            <h4>3. Classification of Linear Equations</h4>
+            <div class="recap-body">
+              <p>Linear equations have three possible solution sets:</p>
+              <div class="formula-box">
+                <p>• <strong>Conditional:</strong> Exactly one unique solution \(x = c\).</p>
+                <p>• <strong>Identity:</strong> Variables cancel leaving a true statement like \(0 = 0\) (Solution set: all real numbers \(\mathbb{R}\)).</p>
+                <p>• <strong>Contradiction:</strong> Variables cancel leaving a false statement like \(0 = 7\) (No solution, empty set \(\emptyset\)).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View 3: Complete Scorecard & Master Solutions -->
+    <div id="viewScorecard" class="view">
+      <div class="hero-score-card">
+        <h2>Solving Linear Equations Evaluation Scorecard</h2>
+        <div class="student-badge" id="reportStudentBadge"><strong>Student: Guest</strong></div>
+        <div class="score-badge" id="scoreValue">0 / 18</div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="progressBarFill"></div>
+        </div>
+        <p id="scoreSubtitle" style="font-size:1.02rem; font-weight:600; color:var(--navy-dark); margin-top:8px;">
+          Review all 18 problem solutions, step evaluations, and derivations below.
+        </p>
+        <button class="btn-primary" style="margin-top: 14px; max-width: 240px;" onclick="window.print()">🖨️ Print Final Scorecard</button>
+      </div>
+
+      <div id="completeSolutionsContainer"></div>
+    </div>
+  </main>
+
+  <div class="toast" id="toastMessage"></div>
+
+  <script>
+    /* ==========================================================================
+       COMPLETE 18-PROBLEM DATASET (6 PRACTICE + 12 ASSIGNMENT)
+       Options and correctIndex are balanced across A (0), B (1), C (2), and D (3).
+       ========================================================================== */
+    const PROBLEMS_DATA = [
+      // ---------- PART 1: PRACTICE PROBLEMS (1 TO 6) ----------
+      {
+        id: 1,
+        set: "p1",
+        setName: "Practice Problems",
+        title: "Two-Sided Linear Equation with Brackets",
+        prompt: "Solve the linear equation: \\[3(x - 5) = 2(2x + 1)\\]",
+        hint: "Distribute 3 on the left side and 2 on the right side: \\(3x - 15 = 4x + 2\\). Then subtract 3x from both sides and subtract 2.",
+        svg: `<svg width="100%" height="180" viewBox="0 0 360 160" style="max-width:360px;">
+          <rect width="360" height="160" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" rx="6"/>
+          <line x1="60" y1="130" x2="300" y2="130" stroke="#64748b" stroke-width="2"/>
+          <polygon points="180,70 165,130 195,130" fill="#0f172a"/>
+          <line x1="80" y1="70" x2="280" y2="70" stroke="#0284c7" stroke-width="3"/>
+          <circle cx="80" cy="70" r="4" fill="#0284c7"/>
+          <circle cx="280" cy="70" r="4" fill="#0284c7"/>
+          <rect x="50" y="45" width="60" height="25" fill="#eff6ff" stroke="#93c5fd" rx="4"/>
+          <text x="58" y="62" font-size="10" font-weight="bold" fill="#1e3a8a">3x − 15</text>
+          <rect x="250" y="45" width="60" height="25" fill="#eff6ff" stroke="#93c5fd" rx="4"/>
+          <text x="260" y="62" font-size="10" font-weight="bold" fill="#1e3a8a">4x + 2</text>
+          <text x="145" y="150" font-size="11" font-weight="bold" fill="#059669">x = −17</text>
+        </svg>`,
+        steps: [
+          {
+            title: "Step 1: Distribute Across Parentheses",
+            prompt: "What does the equation become after clearing parentheses on both sides?",
+            options: [
+              { label: "A", text: "3x - 5 = 4x + 2" },
+              { label: "B", text: "3x - 15 = 4x + 2" },
+              { label: "C", text: "3x - 15 = 4x + 1" },
+              { label: "D", text: "3x - 15 = 2x + 2" }
+            ],
+            correctIndex: 1, // B
+            explanation: "\\(3(x - 5) = 3x - 15\\) and \\(2(2x + 1) = 4x + 2\\). So \\(3x - 15 = 4x + 2\\)."
+          },
+          {
+            title: "Step 2: Collect Variable Terms and Solve",
+            prompt: "Subtract \\(3x\\) and subtract 2 to isolate \\(x\\). What is the solution?",
+            options: [
+              { label: "A", text: "x = 17" },
+              { label: "B", text: "x = -13" },
+              { label: "C", text: "x = -17" },
+              { label: "D", text: "x = -15/4" }
+            ],
+            correctIndex: 2, // C
+            explanation: "\\(3x - 15 = 4x + 2 \\implies -15 - 2 = 4x - 3x \\implies x = -17\\)."
+          }
+        ]
+      },
+      {
+        id: 2,
+        set: "p1",
+        setName: "Practice Problems",
+        title: "Multi-Step Linear Equation with Constant Terms",
+        prompt: "Solve the linear equation: \\[4(2t + 1) - 29 = 3(2t - 5)\\]",
+        hint: "Clear parentheses: \\(8t + 4 - 29 = 6t - 15\\). Combine the constants on the left side before rearranging.",
+        svg: null,
+        steps: [
+          {
+            title: "Step 1: Expand and Combine Constant Terms",
+            prompt: "What does the equation become after simplifying both sides?",
+            options: [
+              { label: "A", text: "8t - 29 = 6t - 15" },
+              { label: "B", text: "8t + 4 = 6t - 15" },
+              { label: "C", text: "8t - 25 = 6t - 5" },
+              { label: "D", text: "8t - 25 = 6t - 15" }
+            ],
+            correctIndex: 3, // D
+            explanation: "\\(\\text{LHS} = 8t + 4 - 29 = 8t - 25\\). \\(\\text{RHS} = 6t - 15\\). So \\(8t - 25 = 6t - 15\\)."
+          },
+          {
+            title: "Step 2: Isolate the Variable t",
+            prompt: "Solve \\(8t - 25 = 6t - 15\\) for \\(t\\).",
+            options: [
+              { label: "A", text: "t = 5" },
+              { label: "B", text: "t = -5" },
+              { label: "C", text: "t = 10" },
+              { label: "D", text: "t = 20" }
+            ],
+            correctIndex: 0, // A
+            explanation: "\\(8t - 6t = -15 + 25 \\implies 2t = 10 \\implies t = 5\\)."
+          }
+        ]
+      },
+      {
+        id: 3,
+        set: "p1",
+        setName: "Practice Problems",
+        title: "Linear Equation with Multiple Fractions",
+        prompt: "Solve the linear equation: \\[\\frac{1}{2}x - \\frac{2}{3} = \\frac{3}{4}x + \\frac{5}{6}\\]",
+        hint: "Find the least common denominator of 2, 3, 4, and 6, which is 12. Multiply every term by 12.",
+        svg: null,
+        steps: [
+          {
+            title: "Step 1: Clear Fractions by Multiplying by 12",
+            prompt: "What is the equivalent integer equation after multiplying by 12?",
+            options: [
+              { label: "A", text: "6x - 2 = 9x + 5" },
+              { label: "B", text: "12x - 8 = 12x + 10" },
+              { label: "C", text: "6x - 8 = 9x + 10" },
+              { label: "D", text: "6x - 8 = 9x + 5" }
+            ],
+            correctIndex: 2, // C
+            explanation: "\\(12(\\frac{1}{2}x) - 12(\\frac{2}{3}) = 12(\\frac{3}{4}x) + 12(\\frac{5}{6}) \\implies 6x - 8 = 9x + 10\\)."
+          },
+          {
+            title: "Step 2: Solve the Integer Equation for x",
+            prompt: "Subtract \\(6x\\) and subtract 10 to isolate \\(x\\).",
+            options: [
+              { label: "A", text: "x = 6" },
+              { label: "B", text: "x = -6" },
+              { label: "C", text: "x = -18" },
+              { label: "D", text: "x = -2/3" }
+            ],
+            correctIndex: 1, // B
+            explanation: "\\(6x - 9x = 10 + 8 \\implies -3x = 18 \\implies x = -6\\)."
+          }
+        ]
+      },
+      {
+        id: 4,
+        set: "p1",
+        setName: "Practice Problems",
+        title: "Equation with Rational Binomials",
+        prompt: "Solve the linear equation: \\[\\frac{3y - 2}{4} = \\frac{y + 1}{3} + \\frac{1}{2}\\]",
+        hint: "Multiply every term by \\(\\text{LCD} = 12\\). Make sure to distribute across brackets: \\(3(3y - 2) = 4(y + 1) + 6\\).",
+        svg: null,
+        steps: [
+          {
+            title: "Step 1: Clear Denominators with LCD = 12",
+            prompt: "What equation results from multiplying both sides by 12?",
+            options: [
+              { label: "A", text: "9y - 6 = 4y + 10" },
+              { label: "B", text: "9y - 6 = 4y + 7" },
+              { label: "C", text: "3y - 2 = y + 1 + 6" },
+              { label: "D", text: "9y - 2 = 4y + 1 + 6" }
+            ],
+            correctIndex: 0, // A
+            explanation: "\\(12 \\cdot \\frac{3y-2}{4} = 12 \\cdot \\frac{y+1}{3} + 12 \\cdot \\frac{1}{2} \\implies 3(3y - 2) = 4(y + 1) + 6 \\implies 9y - 6 = 4y + 4 + 6 = 4y + 10\\)."
+          },
+          {
+            title: "Step 2: Solve for y",
+            prompt: "Subtract \\(4y\\) and add 6 to find \\(y\\).",
+            options: [
+              { label: "A", text: "y = 4/5" },
+              { label: "B", text: "y = 16" },
+              { label: "C", text: "y = 5/16" },
+              { label: "D", text: "y = 16/5" }
+            ],
+            correctIndex: 3, // D
+            explanation: "\\(9y - 4y = 10 + 6 \\implies 5y = 16 \\implies y = 16/5\\)."
+          }
+        ]
+      },
+      {
+        id: 5,
+        set: "p1",
+        setName: "Practice Problems",
+        title: "Recognizing an Identity Equation",
+        prompt: "Solve the linear equation: \\[2(4z + 3) - 8 = 4(2z - 1) + 2\\]",
+        hint: "Distribute on both sides and simplify terms. Notice what happens to the variable \\(z\\).",
+        svg: null,
+        steps: [
+          {
+            title: "Step 1: Expand and Simplify Both Sides",
+            prompt: "What does the equation simplify to?",
+            options: [
+              { label: "A", text: "8z + 6 = 8z - 2" },
+              { label: "B", text: "8z - 2 = 8z - 2" },
+              { label: "C", text: "8z - 2 = 8z + 2" },
+              { label: "D", text: "8z - 8 = 8z - 4" }
+            ],
+            correctIndex: 1, // B
+            explanation: "\\(\\text{LHS} = 8z + 6 - 8 = 8z - 2\\). \\(\\text{RHS} = 8z - 4 + 2 = 8z - 2\\). So \\(8z - 2 = 8z - 2\\)."
+          },
+          {
+            title: "Step 2: Determine the Solution Set",
+            prompt: "Subtracting \\(8z\\) leaves \\(-2 = -2\\). What is the solution set?",
+            options: [
+              { label: "A", text: "z = 0 only" },
+              { label: "B", text: "z = -2 only" },
+              { label: "C", text: "All real numbers (identity, infinitely many solutions)" },
+              { label: "D", text: "No solution (empty set \\emptyset)" }
+            ],
+            correctIndex: 2, // C
+            explanation: "Because the resulting statement \\(-2 = -2\\) (or \\(0 = 0\\)) is universally true regardless of \\(z\\), the equation is an identity with solution set all real numbers."
+          }
+        ]
+      },
+      {
+        id: 6,
+        set: "p1",
+        setName: "Practice Problems",
+        title: "Recognizing a Contradiction Equation",
+        prompt: "Solve the linear equation: \\[3(2 - 4x) + 10x = 15 - 2(x - 3)\\]",
+        hint: "Distribute on both sides: \\(6 - 12x + 10x = 15 - 2x + 6\\). Combine like terms carefully.",
+        svg: null,
+        steps: [
+          {
+            title: "Step 1: Expand and Combine Like Terms",
+            prompt: "What does the equation simplify to?",
+            options: [
+              { label: "A", text: "6 - 2x = 21 - 2x" },
+              { label: "B", text: "6 - 2x = 9 - 2x" },
+              { label: "C", text: "6 - 22x = 21 - 2x" },
+              { label: "D", text: "6 + 2x = 21 - 2x" }
+            ],
+            correctIndex: 0, // A
+            explanation: "\\(\\text{LHS} = 6 - 12x + 10x = 6 - 2x\\). \\(\\text{RHS} = 15 - 2x + 6 = 21 - 2x\\). So \\(6 - 2x = 21 - 2x\\)."
+          },
+          {
+            title: "Step 2: Determine the Solution Set",
+            prompt: "Adding \\(2x\\) to both sides leaves \\(6 = 21\\). What is the solution set?",
+            options: [
+              { label: "A", text: "x = 15/4" },
+              { label: "B", text: "x = 0" },
+              { label: "C", text: "All real numbers" },
+              { label: "D", text: "No solution (contradiction, empty set \\emptyset)" }
+            ],
+            correctIndex: 3, // D
+            explanation: "Since \\(6 = 21\\) is a false statement (a contradiction), there is no value of \\(x\\) that can satisfy the equation."
+          }
+        ]
+      },
+
+      // ---------- PART 2: ASSIGNMENT PROBLEMS (7 TO 18) ----------
+      {
+        id: 7,
+        set: "p2",
+        setName: "Assignment Problems",
+        title: "Standard Two-Sided Linear Equation",
+        prompt: "Solve the linear equation: \\[5x - 8 = 2x + 7\\]",
+        hint: "Subtract \\(2x\\) from both sides and add 8 to both sides.",
+        svg: null,
+        steps: [
+          {
+            title: "Step 1: Group Variable and Constant Terms",
+            prompt: "What equation results from subtracting \\(2x\\) and adding 8?",
+            options: [
+              { label: "A", text: "3x = 1" },
+              { label: "B", text: "3x = 15" },
+              { label: "C", text: "7x = 15" },
+              { label: "D", text: "3x = -1" }
+            ],
+            correctIndex: 1, // B
+            explanation: "\\(5x - 2x = 7 + 8 \\implies 3x = 15\\)."
+          },
+          {
+            title: "Step 2: Solve for x",
+            prompt: "Divide by 3 to find \\(x\\).",
+            options: [
+              { label: "A", text: "x = 3" },
+              { label: "B", text: "x = -5" },
+              { label: "C", text: "x = 5" },
+              { label: "D", text: "x = 15" }
+            ],
+            correctIndex: 2, // C
+            explanation: "\\(x = 15 / 3 = 5\\)."
+          }
+        ]
+      },
+      {
+        id: 8,
+        set: "p2",
+        setName: "Assignment Problems",
+        title: "Linear Equation with Two Sets of Parentheses",
+        prompt: "Solve the linear equation: \\[3(2t - 4) = 5(t + 1) - 8\\]",
+        hint: "Distribute: \\(6t - 12 = 5t + 5 - 8\\). Simplify the constants on the right side.",
+        svg: null,
+        steps: [
+          {
+            title: "Step 1: Expand and Simplify",
+            prompt: "What is the simplified equation?",
+            options: [
+              { label: "A", text: "6t - 12 = 5t - 3" },
+              { label: "B", text: "6t - 12 = 5t + 13" },
+              { label: "C", text: "6t - 4 = 5t - 3" },
+              { label: "D", text: "6t - 12 = 5t - 8" }
+            ],
+            correctIndex: 0, // A
+            explanation: "\\(6t - 12 = 5t + 5 - 8 = 5t - 3\\)."
+          },
+          {
+            title: "Step 2: Solve for t",
+            prompt: "Subtract \\(5t\\) and add 12 to find \\(t\\).",
+            options: [
+              { label: "A", text: "t = -15" },
+              { label: "B", text: "t = -9" },
+              { label: "C", text: "t = 15" },
+              { label: "D", text: "t = 9" }
+            ],
+            correctIndex: 3, // D
+            explanation: "\\(6t - 5t = -3 + 12 \\implies t = 9\\)."
+          }
+        ]
+      },
+      {
+        id: 9,
+        set: "p2",
+        setName: "Assignment Problems",
+        title: "Equation with Subtracted Brackets",
+        prompt: "Solve the linear equation: \\[4 - 2(3 - y) = 5(2y + 1) - 3\\]",
+        hint: "Watch negative signs: \\(4 - 6 + 2y = 10y + 5 - 3\\).",
+        svg: null,
+        steps: [
+          {
+            title: "Step 1: Distribute and Combine Terms",
+            prompt: "What is the simplified form of both sides?",
+            options: [
+              { label: "A", text: "-2 - 2y = 10y + 2" },
+              { label: "B", text: "2y - 2 = 10y - 2" },
+              { label: "C", text: "2y - 2 = 10y + 2" },
+              { label: "D", text: "-2 + 2y = 10y + 8" }
+            ],
+            correctIndex: 2, // C
+            explanation: "\\(\\text{LHS} = 4 - 6 + 2y = 2y - 2\\). \\(\\text{RHS} = 10y + 5 - 3 = 10y + 2\\)."
+          },
+          {
+            title: "Step 2: Solve for y",
+            prompt: "Isolate \\(y\\).",
+            options: [
+              { label: "A", text: "y = -1/2" },
+              { label: "B", text: "y = 1/2" },
+              { label: "C", text: "y = -2" },
+              { label: "D", text: "y = 0" }
+            ],
+            correctIndex: 0, // A
+            explanation: "\\(2y - 10y = 2 + 2 \\implies -8y = 4 \\implies y = -4/8 = -1/2\\)."
+          }
+        ]
+      },
+      {
+        id: 10,
+        set: "p2",
+        setName: "Assignment Problems",
+        title: "Multi-Bracket Linear Equation",
+        prompt: "Solve the linear equation: \\[6(2z - 1) - 3(z + 4) = 4(z - 5) + 1\\]",
+        hint: "Distribute: \\(12z - 6 - 3z - 12 = 4z - 20 + 1\\).",
+        svg: null,
+        steps: [
+          {
+            title: "Step 1: Expand and Group Like Terms",
+            prompt: "What equation results after combining terms on each side?",
+            options: [
+              { label: "A", text: "9z - 18 = 4z - 21" },
+              { label: "B", text: "15z - 18 = 4z - 19" },
+              { label: "C", text: "9z - 6 = 4z - 19" },
+              { label: "D", text: "9z - 18 = 4z - 19" }
+            ],
+            correctIndex: 3, // D
+            explanation: "\\(\\text{LHS} = 12z - 6 - 3z - 12 = 9z - 18\\). \\(\\text{RHS} = 4z - 20 + 1 = 4z - 19\\)."
+          },
+          {
+            title: "Step 2: Solve for z",
+            prompt: "Subtract \\(4z\\) and add 18 to find \\(z\\).",
+            options: [
+              { label: "A", text: "z = -1" },
+              { label: "B", text: "z = -1/5" },
+              { label: "C", text: "z = 1/5" },
+              { label: "D", text: "z = -37/5" }
+            ],
+            correctIndex: 1, // B
+            explanation: "\\(9z - 4z = -19 + 18 \\implies 5z = -1 \\implies z = -1/5\\)."
+          }
+        ]
+      },
+      {
+        id: 11,
+        set: "p2",
+        setName: "Assignment Problems",
+        title: "Linear Equation with Fractional Terms",
+        prompt: "Solve the linear equation: \\[\\frac{3}{5}x + \\frac{1}{2} = \\frac{2}{3} - \\frac{1}{10}x\\]",
+        hint: "Find the least common denominator of 5, 2, 3, and 10, which is 30. Multiply through by 30.",
+        svg: null,
+        steps: [
+          {
+            title: "Step 1: Multiply by LCD = 30",
+            prompt: "What is the equivalent integer equation?",
+            options: [
+              { label: "A", text: "18x + 15 = 20 - 3x" },
+              { label: "B", text: "6x + 15 = 20 - 3x" },
+              { label: "C", text: "18x + 1 = 20 - x" },
+              { label: "D", text: "18x + 15 = 10 - 3x" }
+            ],
+            correctIndex: 0, // A
+            explanation: "\\(30(\\frac{3}{5}x) + 30(\\frac{1}{2}) = 30(\\frac{2}{3}) - 30(\\frac{1}{10}x) \\implies 18x + 15 = 20 - 3x\\)."
+          },
+          {
+            title: "Step 2: Solve for x",
+            prompt: "Add \\(3x\\) and subtract 15 to find \\(x\\).",
+            options: [
+              { label: "A", text: "x = 5/21" },
+              { label: "B", text: "x = 35/21" },
+              { label: "C", text: "x = 5/15" },
+              { label: "D", text: "x = -5/21" }
+            ],
+            correctIndex: 0, // A
+            explanation: "\\(18x + 3x = 20 - 15 \\implies 21x = 5 \\implies x = 5/21\\)."
+          }
+        ]
+      },
+      {
+        id: 12,
+        set: "p2",
+        setName: "Assignment Problems",
+        title: "Difference of Rational Binomials",
+        prompt: "Solve the linear equation: \\[\\frac{w - 3}{2} - \\frac{2w + 1}{5} = 1\\]",
+        hint: "Multiply every term by \\(\\text{LCD} = 10\\). Be careful with the minus sign in front of \\(2(2w + 1)\\).",
+        svg: null,
+        steps: [
+          {
+            title: "Step 1: Multiply by 10 and Expand",
+            prompt: "What is the simplified equation after multiplying by 10?",
+            options: [
+              { label: "A", text: "5w - 15 - 4w + 2 = 10" },
+              { label: "B", text: "w - 13 = 10" },
+              { label: "C", text: "w - 17 = 10" },
+              { label: "D", text: "5w - 15 - 4w - 2 = 1" }
+            ],
+            correctIndex: 2, // C
+            explanation: "\\(10 \\cdot \\frac{w-3}{2} - 10 \\cdot \\frac{2w+1}{5} = 10(1) \\implies 5(w - 3) - 2(2w + 1) = 10 \\implies 5w - 15 - 4w - 2 = 10 \\implies w - 17 = 10\\)."
+          },
+          {
+            title: "Step 2: Solve for w",
+            prompt: "Add 17 to both sides to find \\(w\\).",
+            options: [
+              { label: "A", text: "w = -7" },
+              { label: "B", text: "w = 7" },
+              { label: "C", text: "w = 23" },
+              { label: "D", text: "w = 27" }
+            ],
+            correctIndex: 3, // D
+            explanation: "\\(w = 10 + 17 = 27\\)."
+          }
+        ]
+      },
+      {
+        id: 13,
+        set: "p2",
+        setName: "Assignment Problems",
+        title: "Equation with Three Rational Fractions",
+        prompt: "Solve the linear equation: \\[\\frac{2t + 3}{3} - \\frac{t - 4}{6} = \\frac{3t - 1}{2}\\]",
+        hint: "Multiply every fraction by \\(\\text{LCD} = 6\\). Watch signs: \\(-(t - 4) = -t + 4\\).",
+        svg: null,
+        steps: [
+          {
+            title: "Step 1: Multiply by LCD = 6",
+            prompt: "What equation results after clearing denominators and simplifying?",
+            options: [
+              { label: "A", text: "3t + 10 = 9t - 3" },
+              { label: "B", text: "3t + 2 = 9t - 3" },
+              { label: "C", text: "4t + 6 - t - 4 = 9t - 3" },
+              { label: "D", text: "3t + 10 = 9t - 1" }
+            ],
+            correctIndex: 0, // A
+            explanation: "\\(2(2t + 3) - (t - 4) = 3(3t - 1) \\implies 4t + 6 - t + 4 = 9t - 3 \\implies 3t + 10 = 9t - 3\\)."
+          },
+          {
+            title: "Step 2: Solve for t",
+            prompt: "Isolate \\(t\\).",
+            options: [
+              { label: "A", text: "t = -13/6" },
+              { label: "B", text: "t = 7/6" },
+              { label: "C", text: "t = 13/6" },
+              { label: "D", text: "t = 6/13" }
+            ],
+            correctIndex: 2, // C
+            explanation: "\\(3t - 9t = -3 - 10 \\implies -6t = -13 \\implies t = 13/6\\)."
+          }
+        ]
+      },
+      {
+        id: 14,
+        set: "p2",
+        setName: "Assignment Problems",
+        title: "Assignment Identity Equation",
+        prompt: "Solve the linear equation: \\[4(3x - 2) - 2(5x + 1) = 2(x - 5)\\]",
+        hint: "Expand both sides: \\(12x - 8 - 10x - 2 = 2x - 10\\).",
+        svg: null,
+        steps: [
+          {
+            title: "Step 1: Expand and Combine Terms",
+            prompt: "What is the simplified equation?",
+            options: [
+              { label: "A", text: "2x - 6 = 2x - 10" },
+              { label: "B", text: "22x - 10 = 2x - 10" },
+              { label: "C", text: "2x - 10 = 2x - 5" },
+              { label: "D", text: "2x - 10 = 2x - 10" }
+            ],
+            correctIndex: 3, // D
+            explanation: "\\(\\text{LHS} = 12x - 8 - 10x - 2 = 2x - 10\\). \\(\\text{RHS} = 2x - 10\\). So \\(2x - 10 = 2x - 10\\)."
+          },
+          {
+            title: "Step 2: State Solution Set",
+            prompt: "What is the solution set?",
+            options: [
+              { label: "A", text: "x = 0 only" },
+              { label: "B", text: "All real numbers (identity, infinitely many solutions)" },
+              { label: "C", text: "No solution (empty set \\emptyset)" },
+              { label: "D", text: "x = 5 only" }
+            ],
+            correctIndex: 1, // B
+            explanation: "Subtracting \\(2x\\) leaves \\(-10 = -10\\) (or \\(0 = 0\\)), which is universally true for all real numbers."
+          }
+        ]
+      },
+      {
+        id: 15,
+        set: "p2",
+        setName: "Assignment Problems",
+        title: "Assignment Contradiction Equation",
+        prompt: "Solve the linear equation: \\[2(6 - t) + 5t = 3(t + 4) - 5\\]",
+        hint: "Expand: \\(12 - 2t + 5t = 3t + 12 - 5\\). Compare coefficients.",
+        svg: null,
+        steps: [
+          {
+            title: "Step 1: Expand and Combine Terms",
+            prompt: "What equation results after combining terms on each side?",
+            options: [
+              { label: "A", text: "3t + 12 = 3t + 17" },
+              { label: "B", text: "3t + 12 = 3t + 7" },
+              { label: "C", text: "7t + 12 = 3t + 7" },
+              { label: "D", text: "3t + 6 = 3t + 7" }
+            ],
+            correctIndex: 1, // B
+            explanation: "\\(\\text{LHS} = 12 - 2t + 5t = 3t + 12\\). \\(\\text{RHS} = 3t + 12 - 5 = 3t + 7\\)."
+          },
+          {
+            title: "Step 2: State Solution Set",
+            prompt: "Subtracting \\(3t\\) leaves \\(12 = 7\\). What is the solution set?",
+            options: [
+              { label: "A", text: "No solution (contradiction, empty set \\emptyset)" },
+              { label: "B", text: "t = 5" },
+              { label: "C", text: "All real numbers" },
+              { label: "D", text: "t = 0" }
+            ],
+            correctIndex: 0, // A
+            explanation: "\\(12 = 7\\) is false, meaning the equation is a contradiction with no solution."
+          }
+        ]
+      },
+      {
+        id: 16,
+        set: "p2",
+        setName: "Assignment Problems",
+        title: "Equation with Fraction Outside Parentheses",
+        prompt: "Solve the linear equation: \\[\\frac{1}{4}(8y - 12) + 2 = 3(y - 1) - y\\]",
+        hint: "Distribute 1/4 into the first bracket: \\(2y - 3 + 2 = 3y - 3 - y\\).",
+        svg: null,
+        steps: [
+          {
+            title: "Step 1: Distribute and Combine Terms",
+            prompt: "What does the equation simplify to?",
+            options: [
+              { label: "A", text: "2y - 1 = 2y - 4" },
+              { label: "B", text: "2y - 3 = 2y - 3" },
+              { label: "C", text: "2y - 1 = 2y - 3" },
+              { label: "D", text: "2y + 2 = 2y - 3" }
+            ],
+            correctIndex: 2, // C
+            explanation: "\\(\\text{LHS} = 2y - 3 + 2 = 2y - 1\\). \\(\\text{RHS} = 3y - 3 - y = 2y - 3\\)."
+          },
+          {
+            title: "Step 2: State Solution Set",
+            prompt: "Subtracting \\(2y\\) leaves \\(-1 = -3\\). What is the solution set?",
+            options: [
+              { label: "A", text: "y = -2" },
+              { label: "B", text: "y = 1/2" },
+              { label: "C", text: "All real numbers" },
+              { label: "D", text: "No solution (contradiction, empty set \\emptyset)" }
+            ],
+            correctIndex: 3, // D
+            explanation: "Since \\(-1 = -3\\) is false, there is no solution."
+          }
+        ]
+      },
+      {
+        id: 17,
+        set: "p2",
+        setName: "Assignment Problems",
+        title: "Linear Equation with Decimals",
+        prompt: "Solve the linear equation: \\[0.2(x - 3) + 0.15x = 0.5 - 0.05(2x + 1)\\]",
+        hint: "Multiply every term by 100 to clear all decimals: \\(20(x - 3) + 15x = 50 - 5(2x + 1)\\).",
+        svg: null,
+        steps: [
+          {
+            title: "Step 1: Multiply by 100 and Expand",
+            prompt: "What equation results after multiplying by 100 and simplifying?",
+            options: [
+              { label: "A", text: "35x - 60 = 45 - 10x" },
+              { label: "B", text: "35x - 6 = 50 - 10x" },
+              { label: "C", text: "35x - 60 = 50 - 10x" },
+              { label: "D", text: "20x - 60 = 45 - 10x" }
+            ],
+            correctIndex: 0, // A
+            explanation: "\\(20(x - 3) + 15x = 50 - 5(2x + 1) \\implies 20x - 60 + 15x = 50 - 10x - 5 \\implies 35x - 60 = 45 - 10x\\)."
+          },
+          {
+            title: "Step 2: Solve for x",
+            prompt: "Add \\(10x\\) and add 60 to solve for \\(x\\).",
+            options: [
+              { label: "A", text: "x = 3/7" },
+              { label: "B", text: "x = 7/9" },
+              { label: "C", text: "x = 7/3" },
+              { label: "D", text: "x = 21/5" }
+            ],
+            correctIndex: 2, // C
+            explanation: "\\(35x + 10x = 45 + 60 \\implies 45x = 105 \\implies x = 105/45 = 7/3\\)."
+          }
+        ]
+      },
+      {
+        id: 18,
+        set: "p2",
+        setName: "Assignment Problems",
+        title: "Rational Equation with Differing Denominators",
+        prompt: "Solve the linear equation: \\[\\frac{4 - 3z}{5} = \\frac{2z + 1}{3} - 2\\]",
+        hint: "Multiply every term by \\(\\text{LCD} = 15\\): \\(3(4 - 3z) = 5(2z + 1) - 30\\).",
+        svg: null,
+        steps: [
+          {
+            title: "Step 1: Multiply by 15 and Simplify",
+            prompt: "What is the equivalent integer equation?",
+            options: [
+              { label: "A", text: "12 - 9z = 10z + 5 - 2" },
+              { label: "B", text: "12 - 9z = 10z - 25" },
+              { label: "C", text: "12 - 3z = 10z - 25" },
+              { label: "D", text: "4 - 9z = 2z - 25" }
+            ],
+            correctIndex: 1, // B
+            explanation: "\\(15 \\cdot \\frac{4-3z}{5} = 15 \\cdot \\frac{2z+1}{3} - 15(2) \\implies 3(4 - 3z) = 5(2z + 1) - 30 \\implies 12 - 9z = 10z + 5 - 30 = 10z - 25\\)."
+          },
+          {
+            title: "Step 2: Solve for z",
+            prompt: "Subtract \\(10z\\) and subtract 12 to find \\(z\\).",
+            options: [
+              { label: "A", text: "z = 37/19" },
+              { label: "B", text: "z = -37/19" },
+              { label: "C", text: "z = 19/37" },
+              { label: "D", text: "z = 13/19" }
+            ],
+            correctIndex: 0, // A
+            explanation: "\\(-9z - 10z = -25 - 12 \\implies -19z = -37 \\implies z = 37/19\\)."
+          }
+        ]
+      }
+    ];
+
+    /* ==========================================================================
+       PERSISTENCE & STATE MANAGEMENT ENGINE
+       ========================================================================== */
+    const STORAGE_KEY = "algebra_solve_linear_eqns_18_v1";
+
+    let currentStudentName = "Guest";
+    let activeProblemId = 1;
+    let currentPaletteFilter = "all";
+
+    let stepProgress = {};
+
+    let audioMuted = false;
+    let totalSeconds = 0;
+    let timerInterval = null;
+
+    function saveSessionProgress() {
+      try {
+        const payload = {
+          studentName: currentStudentName,
+          activeProblemId: activeProblemId,
+          totalSeconds: totalSeconds,
+          stepProgress: stepProgress
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+      } catch (e) {
+        console.warn("Storage save error", e);
+      }
+    }
+
+    function checkSavedSession() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const data = JSON.parse(raw);
+        if (data && data.studentName) {
+          const alertBox = document.getElementById('resumeAlertBox');
+          const detailsSpan = document.getElementById('savedSessionDetails');
+          const resumeBtn = document.getElementById('resumeSessionBtn');
+          const startBtn = document.getElementById('startSessionBtn');
+          const input = document.getElementById('studentNameInput');
+
+          input.value = data.studentName;
+          let completedSteps = 0;
+          Object.keys(data.stepProgress || {}).forEach(k => {
+            if (data.stepProgress[k].resolved) completedSteps++;
+          });
+          detailsSpan.innerText = `Student: ${data.studentName} • ${completedSteps}/36 Steps Completed • Time: ${Math.floor(data.totalSeconds / 60)}m ${data.totalSeconds % 60}s`;
+          alertBox.style.display = 'block';
+          resumeBtn.style.display = 'inline-block';
+          startBtn.innerText = 'Start Fresh Session';
+        }
+      } catch (e) {
+        console.warn("Session check error", e);
+      }
+    }
+
+    const AudioEngine = {
+      ctx: null,
+      init() {
+        if (!this.ctx) {
+          this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+      },
+      playTone(freq, type, duration, delay = 0) {
+        if (audioMuted || !this.ctx) return;
+        setTimeout(() => {
+          try {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+            gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start();
+            osc.stop(this.ctx.currentTime + duration);
+          } catch (e) {
+            console.warn(e);
+          }
+        }, delay * 1000);
+      },
+      correct() {
+        this.init();
+        this.playTone(659.25, 'sine', 0.15, 0);
+        this.playTone(880.00, 'sine', 0.25, 0.12);
+      },
+      incorrect() {
+        this.init();
+        this.playTone(196.00, 'triangle', 0.2, 0);
+        this.playTone(146.83, 'triangle', 0.3, 0.12);
+      }
+    };
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        totalSeconds++;
+        const mins = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+        const secs = String(totalSeconds % 60).padStart(2, '0');
+        document.getElementById('timerChip').innerText = `⏱️ ${mins}:${secs}`;
+        saveSessionProgress();
+      }, 1000);
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toastMessage');
+      t.innerText = msg;
+      t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 2600);
+    }
+
+    function initDirectLogin(isResume = false) {
+      const nameInput = document.getElementById('studentNameInput').value.trim() || 'Student';
+      
+      if (isResume) {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const data = JSON.parse(raw);
+          currentStudentName = data.studentName || nameInput;
+          activeProblemId = data.activeProblemId || 1;
+          totalSeconds = data.totalSeconds || 0;
+          stepProgress = data.stepProgress || {};
+          showToast(`Welcome back, ${currentStudentName}!`);
+        }
+      } else {
+        currentStudentName = nameInput;
+        totalSeconds = 0;
+        activeProblemId = 1;
+        stepProgress = {};
+        saveSessionProgress();
+      }
+
+      document.getElementById('userPill').innerHTML = `<strong>Student: ${currentStudentName}</strong>`;
+      document.getElementById('reportStudentBadge').innerHTML = `<strong>Student: ${currentStudentName}</strong>`;
+      document.getElementById('loginGateView').style.display = 'none';
+      
+      AudioEngine.init();
+      startTimer();
+      renderPalette();
+      loadProblem(activeProblemId);
+    }
+
+    function resetStudentProgress() {
+      if (confirm("Reset all 18 problem attempts and scorecard progress?")) {
+        localStorage.removeItem(STORAGE_KEY);
+        location.reload();
+      }
+    }
+
+    function switchMainTab(tab) {
+      document.getElementById('tabPracticeBtn').classList.toggle('active', tab === 'practice');
+      document.getElementById('tabTheoryBtn').classList.toggle('active', tab === 'theory');
+      document.getElementById('tabScorecardBtn').classList.toggle('active', tab === 'scorecard');
+
+      document.getElementById('viewPractice').classList.toggle('active', tab === 'practice');
+      document.getElementById('viewTheory').classList.toggle('active', tab === 'theory');
+      document.getElementById('viewScorecard').classList.toggle('active', tab === 'scorecard');
+
+      if (tab === 'scorecard') {
+        renderScorecard();
+      } else if (tab === 'practice') {
+        renderPalette();
+        loadProblem(activeProblemId);
+      }
+
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        MathJax.typesetPromise();
+      }
+    }
+
+    function filterPalette(mode) {
+      currentPaletteFilter = mode;
+      document.getElementById('filterAllBtn').classList.toggle('active', mode === 'all');
+      document.getElementById('filterP1Btn').classList.toggle('active', mode === 'p1');
+      document.getElementById('filterP2Btn').classList.toggle('active', mode === 'p2');
+      renderPalette();
+    }
+
+    function renderAlignedTopicBanner() {
+      const banner = document.getElementById('topicBannerContainer');
+      banner.innerHTML = `
+        <h3>📚 Solving Linear Equations: Concept &amp; Notes Reference</h3>
+        <p style="font-size:0.94rem; color:var(--text-main); line-height:1.6;">
+          An equation is a mathematical statement setting two expressions equal. For linear equations in one variable, we clear denominators using the LCD, apply the distributive property, combine like terms, and isolate the variable.
+        </p>
+        
+        <div class="formula-box">
+          <strong>Standard Balanced Sequence:</strong>
+          \\[\\text{Clear Fractions (LCD)} \\longrightarrow a(bx + c) = abx + ac \\longrightarrow ax + b = cx + d \\implies (a - c)x = d - b\\]
+        </div>
+
+        <div class="paul-notes-container">
+          <h4>📖 Paul's Online Notes: Core Rules &amp; Special Cases</h4>
+          <div class="paul-notes-body">
+            <ul>
+              <li><strong>Balance Principle:</strong> Whatever operation is performed on one side (addition, subtraction, multiplication by non-zero constants) must be performed identically on the other side.</li>
+              <li><strong>Parentheses &amp; Minus Signs:</strong> When subtracting parentheses, distribute the negative sign to every term inside: \\(-(ax + b) = -ax - b\\).</li>
+              <li><strong>Identities vs. Contradictions:</strong>
+                <ul>
+                  <li>If variables cancel leaving a true statement like \\(0 = 0\\) or \\(5 = 5\\), the equation is an <strong>identity</strong> with solution set all real numbers \\(\\mathbb{R}\\).</li>
+                  <li>If variables cancel leaving a false statement like \\(0 = 7\\), the equation is a <strong>contradiction</strong> with <strong>no solution</strong> (empty set \\(\\emptyset\\)).</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      `;
+    }
+
+    function toggleHint(pId) {
+      const hintBox = document.getElementById(`hintBox_${pId}`);
+      if (hintBox) {
+        const isHidden = hintBox.style.display === 'none' || hintBox.style.display === '';
+        hintBox.style.display = isHidden ? 'block' : 'none';
+      }
+    }
+
+    function renderPalette() {
+      const grid = document.getElementById('paletteGrid');
+      grid.innerHTML = '';
+
+      let completedProblems = 0;
+
+      let filteredList = PROBLEMS_DATA;
+      if (currentPaletteFilter === 'p1') filteredList = PROBLEMS_DATA.filter(p => p.set === 'p1');
+      if (currentPaletteFilter === 'p2') filteredList = PROBLEMS_DATA.filter(p => p.set === 'p2');
+
+      PROBLEMS_DATA.forEach((prob) => {
+        let allResolved = true;
+        prob.steps.forEach((_, sIdx) => {
+          const key = `${prob.id}_${sIdx}`;
+          const sp = stepProgress[key];
+          if (!sp || !sp.resolved) allResolved = false;
+        });
+        if (allResolved) completedProblems++;
+      });
+
+      filteredList.forEach((prob) => {
+        let allResolved = true;
+        let anyResolved = false;
+
+        prob.steps.forEach((_, sIdx) => {
+          const key = `${prob.id}_${sIdx}`;
+          const sp = stepProgress[key];
+          if (sp && sp.resolved) anyResolved = true;
+          else allResolved = false;
+        });
+
+        const btn = document.createElement('button');
+        let stateClass = '';
+        if (prob.id === activeProblemId) stateClass = 'active';
+        else if (allResolved) stateClass = 'completed';
+        else if (anyResolved) stateClass = 'partial';
+
+        btn.className = `palette-btn ${stateClass}`;
+        btn.innerHTML = `<span>${prob.id}</span>`;
+        btn.title = `Problem ${prob.id}: ${prob.title}`;
+        btn.onclick = () => loadProblem(prob.id);
+        grid.appendChild(btn);
+      });
+
+      document.getElementById('paletteCount').innerText = `${completedProblems} / ${PROBLEMS_DATA.length} Solved`;
+    }
+
+    function loadProblem(pId) {
+      activeProblemId = pId;
+      saveSessionProgress();
+      renderPalette();
+
+      const prob = PROBLEMS_DATA.find(p => p.id === pId);
+      const card = document.getElementById('activeQuestionCard');
+
+      // Update topic header dynamically
+      renderAlignedTopicBanner();
+
+      let stepsHtml = '';
+
+      // STRICT STEP GATING:
+      // Step k is ONLY rendered if Step k-1 is resolved!
+      prob.steps.forEach((step, sIdx) => {
+        const key = `${prob.id}_${sIdx}`;
+        const sp = stepProgress[key] || { attempts: 0, selectedIndex: null, resolved: false, correct: false };
+
+        let canShow = false;
+        if (sIdx === 0) {
+          canShow = true;
+        } else {
+          const prevKey = `${prob.id}_${sIdx - 1}`;
+          const prevSp = stepProgress[prevKey];
+          if (prevSp && prevSp.resolved) {
+            canShow = true;
+          }
+        }
+
+        // STRICT GATING: Do not render or show until previous step is finished
+        if (!canShow) return;
+
+        let optionsHtml = '';
+        step.options.forEach((opt, optIdx) => {
+          let optClass = '';
+          if (sp.resolved) {
+            if (optIdx === step.correctIndex) {
+              optClass = 'selected-correct';
+            } else if (sp.selectedIndex === optIdx) {
+              optClass = 'selected-wrong';
+            }
+          }
+
+          optionsHtml += `
+            <button class="mcq-option-btn ${optClass}" 
+              onclick="handleStepSelect(${prob.id}, ${sIdx}, ${optIdx})"
+              ${sp.resolved ? 'disabled' : ''}>
+              <span class="opt-letter">(${opt.label})</span>
+              <span>\\(${opt.text}\\)</span>
+            </button>
+          `;
+        });
+
+        let feedbackHtml = '';
+        if (sp.resolved) {
+          feedbackHtml = `
+            <div class="step-feedback-box ${sp.correct ? 'correct' : 'incorrect'}">
+              <strong>${sp.correct ? '✓ Step Completed' : '✗ Solution Revealed'}</strong> (Correct Choice: Option ${step.options[step.correctIndex].label})<br/>
+              <div style="margin-top: 6px;">${step.explanation}</div>
+            </div>
+          `;
+        }
+
+        stepsHtml += `
+          <div class="step-unit ${sp.resolved ? 'completed' : ''}">
+            <div class="step-header">
+              <div class="step-title">
+                <span>${step.title}</span>
+                ${sp.resolved ? '<span class="step-badge resolved">Finished</span>' : `<span class="step-badge">Active Step</span>`}
+              </div>
+              <span class="attempts-badge">Attempts: ${sp.attempts}/2</span>
+            </div>
+            <div style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 10px;">${step.prompt}</div>
+            <div class="mcq-container">${optionsHtml}</div>
+            
+            ${!sp.resolved && sp.attempts >= 2 ? `
+              <button class="btn-reveal-step" onclick="revealStepSolution(${prob.id},${sIdx})">
+                Reveal Step Solution &amp; Continue
+              </button>
+            ` : ''}
+
+            ${feedbackHtml}
+          </div>
+        `;
+      });
+
+      const pIdx = PROBLEMS_DATA.findIndex(p => p.id === prob.id);
+      const prevDisabled = pIdx === 0 ? 'disabled' : '';
+      const nextDisabled = pIdx === PROBLEMS_DATA.length - 1 ? 'disabled' : '';
+
+      card.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+          <span class="concept-tag">${prob.setName}</span>
+          <span style="font-size:0.82rem; color:var(--text-muted);">Algebra: Solving Linear Equations</span>
+        </div>
+        
+        <h2 style="color:var(--navy-dark); margin: 6px 0 10px 0;">Problem ${prob.id}: ${prob.title}</h2>
+        <div style="margin-top: 8px; line-height: 1.65; font-size:1.02rem;">${prob.prompt}</div>
+        
+        <div class="hint-container">
+          <button class="btn-hint-toggle" onclick="toggleHint(${prob.id})">
+            💡 Need a Hint? Click to View / Hide
+          </button>
+          <div class="hint-box" id="hintBox_${prob.id}">
+            <strong>Pedagogical Hint:</strong> ${prob.hint}
+          </div>
+        </div>
+
+        ${prob.svg ? `<div class="svg-container">${prob.svg}</div>` : ''}
+        
+        <div style="margin-top: 18px;">${stepsHtml}</div>
+
+        <div class="nav-toolbar">
+          <button class="btn-nav-action" onclick="navigateProblem(-1)" ${prevDisabled}>
+            ⏮ Previous Problem
+          </button>
+          <div class="nav-btn-group">
+            <button class="btn-nav-action btn-skip" onclick="skipProblem(${prob.id})">
+              ⏭ Skip Problem
+            </button>
+            <button class="btn-nav-action" onclick="navigateProblem(1)" ${nextDisabled}>
+              Next Problem ❯
+            </button>
+          </div>
+        </div>
+      `;
+
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        MathJax.typesetPromise();
+      }
+    }
+
+    function handleStepSelect(pId, sIdx, optIdx) {
+      const prob = PROBLEMS_DATA.find(p => p.id === pId);
+      const step = prob.steps[sIdx];
+      const key = `${pId}_${sIdx}`;
+
+      if (!stepProgress[key]) {
+        stepProgress[key] = { attempts: 0, selectedIndex: null, resolved: false, correct: false };
+      }
+      const sp = stepProgress[key];
+      if (sp.resolved) return;
+
+      sp.selectedIndex = optIdx;
+      sp.attempts++;
+
+      if (optIdx === step.correctIndex) {
+        sp.resolved = true;
+        sp.correct = true;
+        AudioEngine.correct();
+        showToast(`Step ${sIdx + 1} Completed! Next step unlocked.`);
+      } else {
+        AudioEngine.incorrect();
+        if (sp.attempts >= 2) {
+          showToast(`2 attempts reached. Click 'Reveal Step Solution' to unlock next step.`);
+        } else {
+          showToast(`Incorrect option. 1 attempt remaining!`);
+        }
+      }
+
+      saveSessionProgress();
+      renderPalette();
+      loadProblem(pId);
+    }
+
+    function revealStepSolution(pId, sIdx) {
+      const key = `${pId}_${sIdx}`;
+      if (!stepProgress[key]) {
+        stepProgress[key] = { attempts: 2, selectedIndex: null, resolved: false, correct: false };
+      }
+      const sp = stepProgress[key];
+      sp.resolved = true;
+      sp.correct = false;
+      AudioEngine.incorrect();
+      showToast(`Step ${sIdx + 1} solution revealed. Next step unlocked.`);
+      saveSessionProgress();
+      renderPalette();
+      loadProblem(pId);
+    }
+
+    function navigateProblem(delta) {
+      const pIdx = PROBLEMS_DATA.findIndex(p => p.id === activeProblemId);
+      const target = pIdx + delta;
+      if (target >= 0 && target < PROBLEMS_DATA.length) {
+        loadProblem(PROBLEMS_DATA[target].id);
+      }
+    }
+
+    function skipProblem(pId) {
+      showToast(`Problem ${pId} skipped.`);
+      navigateProblem(1);
+    }
+
+    function renderScorecard() {
+      const container = document.getElementById('completeSolutionsContainer');
+      let fullySolvedProblems = 0;
+      let totalSteps = 0;
+      let correctSteps = 0;
+
+      PROBLEMS_DATA.forEach(p => {
+        let probComplete = true;
+        p.steps.forEach((_, sIdx) => {
+          totalSteps++;
+          const key = `${p.id}_${sIdx}`;
+          const sp = stepProgress[key];
+          if (sp && sp.correct) {
+            correctSteps++;
+          } else {
+            probComplete = false;
+          }
+        });
+        if (probComplete) fullySolvedProblems++;
+      });
+
+      const percentage = Math.round((correctSteps / totalSteps) * 100);
+
+      document.getElementById('scoreValue').innerText = `${fullySolvedProblems} / ${PROBLEMS_DATA.length}`;
+      document.getElementById('progressBarFill').style.width = `${percentage}%`;
+      document.getElementById('reportStudentBadge').innerHTML = `<strong>Student: ${currentStudentName}</strong> (${correctSteps}/${totalSteps} Steps Correct • ${percentage}%)`;
+
+      let html = '';
+      PROBLEMS_DATA.forEach(prob => {
+        let probStepsHtml = prob.steps.map((step, sIdx) => {
+          const key = `${prob.id}_${sIdx}`;
+          const sp = stepProgress[key] || { attempts: 0, selectedIndex: null, resolved: false, correct: false };
+          
+          let badge = `<span style="color:var(--text-muted); font-weight:bold;">Unattempted</span>`;
+          if (sp.resolved) {
+            badge = sp.correct 
+              ? `<span style="color:var(--green-ok); font-weight:bold;">✓ Correct (Attempt ${sp.attempts})</span>` 
+              : `<span style="color:var(--red-fail); font-weight:bold;">✗ Revealed</span>`;
+          }
+
+          const userChoiceText = (sp.selectedIndex !== null && step.options[sp.selectedIndex]) 
+            ? `(${step.options[sp.selectedIndex].label}) \\(${step.options[sp.selectedIndex].text}\\)` 
+            : 'None';
+
+          return `
+            <div style="background:#f8fafc; border-left:4px solid var(--brand-blue); padding:12px; margin-top:10px; border-radius:0 6px 6px 0;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <strong>${step.title}</strong>
+                ${badge}
+              </div>
+              <p style="font-size:0.9rem; margin-bottom:4px;"><strong>Target:</strong> ${step.prompt}</p>
+              <p style="font-size:0.88rem;"><strong>Your Choice:</strong> ${userChoiceText}</p>
+              <p style="font-size:0.88rem;"><strong>Correct Option:</strong> (${step.options[step.correctIndex].label}) \\(${step.options[step.correctIndex].text}\\)</p>
+              <p style="font-size:0.86rem; color:var(--text-muted); margin-top:4px;">${step.explanation}</p>
+            </div>
+          `;
+        }).join('');
+
+        html += `
+          <div class="theory-card" style="margin-bottom:20px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="concept-tag">${prob.setName}</span>
+              <span style="font-size:0.85rem; color:var(--text-muted);">Problem ${prob.id} of ${PROBLEMS_DATA.length}</span>
+            </div>
+            <h3 style="margin-top:6px;">Problem ${prob.id}: ${prob.title}</h3>
+            <div style="margin: 8px 0; font-size:0.95rem;">${prob.prompt}</div>
+            ${prob.svg ? `<div class="svg-container" style="max-width:320px; margin:12px 0;">${prob.svg}</div>` : ''}
+            <div>${probStepsHtml}</div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        MathJax.typesetPromise();
+      }
+    }
+
+    document.getElementById('audioToggleBtn').onclick = () => {
+      audioMuted = !audioMuted;
+      document.getElementById('audioToggleBtn').innerText = audioMuted ? '🔇' : '🔊';
+    };
+
+    window.addEventListener('DOMContentLoaded', checkSavedSession);
+  </script>
+</body>
+</html>
